@@ -7,7 +7,17 @@
 <title>Mon IA Privée</title>
 <style>
 :root{color-scheme:dark;--bg:#080c16;--panel:#121a2b;--panel2:#19243a;--line:#283653;--purple:#7657ff;--text:#f4f5ff;--muted:#a8b2ca;--user-bubble:#6344e8;--bot-bubble:var(--panel2);--roleplay:#a8b2ca;--roleplay-opacity:.78;--dialogue-weight:600;--chat-bg-image:none}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);background-image:var(--chat-bg-image);background-size:cover;background-position:center;background-attachment:fixed;color:var(--text);font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:calc(12px + env(safe-area-inset-top)) 16px 12px;display:flex;align-items:center;justify-content:space-between}h1{font-size:20px;margin:0}h2{font-size:18px;margin:0 0 12px}.brand{display:flex;gap:10px;align-items:center}.logo{font-size:27px;color:#9c82ff}main{max-width:760px;margin:auto;padding:16px 14px calc(90px + env(safe-area-inset-bottom))}.btn{border:0;border-radius:14px;padding:12px 15px;background:var(--purple);color:white;font-weight:650}.btn.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}.btn.danger{background:#6f2537}.row{display:flex;gap:10px;align-items:center}.row>*{min-width:0}.stack{display:flex;flex-direction:column;gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px}.muted{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.charcard{padding:0;overflow:hidden;text-align:left;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:18px}.charimg{width:100%;height:145px;object-fit:cover;background:var(--panel2);display:block}.charbody{padding:12px}.charbody strong{display:block;margin-bottom:5px}.field{display:flex;flex-direction:column;gap:7px;margin:13px 0}.field label{font-size:14px;color:var(--text);font-weight:600}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text);padding:12px;outline:none}.field textarea{resize:vertical;min-height:85px}.field textarea.desc{min-height:180px}.counter{text-align:right;color:var(--muted);font-size:12px}.hidden{display:none!important}.actions{display:flex;gap:8px;flex-wrap:wrap}.avatar{width:40px;height:40px;object-fit:cover;border-radius:12px;background:var(--panel2)}.chathead{display:flex;align-items:center;gap:10px;margin-bottom:14px}.messages{display:flex;flex-direction:column;gap:10px;margin:12px 0 18px}.bubble{max-width:92%;padding:12px 14px;border-radius:17px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;word-break:normal}.bubble.bot{align-self:flex-start;background:var(--bot-bubble);border:1px solid var(--line);color:var(--text);box-shadow:0 3px 12px #0002}.bubble.user{align-self:flex-end;background:var(--user-bubble);color:#fff}.bubble .speech{font-weight:var(--dialogue-weight);color:var(--text)}.bubble .roleplay{color:var(--roleplay);opacity:var(--roleplay-opacity);font-style:italic}.composer{position:sticky;bottom:0;padding:10px 0 calc(10px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--bg) 18%)}.composer .row{align-items:flex-end}.composer textarea{flex:1;min-height:46px;max-height:120px;resize:vertical;background:var(--panel);border:1px solid var(--line);border-radius:16px;color:var(--text);padding:12px}.nav{position:fixed;bottom:0;left:0;right:0;z-index:6;display:flex;justify-content:space-around;padding:10px 8px calc(10px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--bg) 94%,transparent);border-top:1px solid var(--line)}.nav button{background:none;border:0;color:var(--muted);padding:6px;font-size:13px}.nav button.active{color:#b6a6ff}.notice{background:#302515;border:1px solid #715529;color:#ffe3a4;border-radius:12px;padding:12px;font-size:13px;line-height:1.4}.empty{text-align:center;padding:45px 16px}.empty .logo{font-size:54px}.status{font-size:12px;color:var(--muted)}.color-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.color-row input[type=color]{width:54px;height:42px;padding:3px;border-radius:10px;border:1px solid var(--line);background:var(--panel)}.bubble .roleplay,.bubble .speech{white-space:pre-wrap}@media(min-width:600px){.charimg{height:190px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);background-image:var(--chat-bg-image);background-size:cover;background-position:center;background-attachment:fixed;color:var(--text);font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:calc(12px + env(safe-area-inset-top)) 16px 12px;display:flex;align-items:center;justify-content:space-between}h1{font-size:20px;margin:0}h2{font-size:18px;margin:0 0 12px}.brand{display:flex;gap:10px;align-items:center}.logo{font-size:27px;color:#9c82ff}main{max-width:760px;margin:auto;padding:16px 14px calc(90px + env(safe-area-inset-bottom))}.btn{border:0;border-radius:14px;padding:12px 15px;background:var(--purple);color:white;font-weight:650}.btn.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}.btn.danger{background:#6f2537}.row{display:flex;gap:10px;align-items:center}.row>*{min-width:0}.stack{display:flex;flex-direction:column;gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px}.muted{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.charcard{padding:0;overflow:hidden;text-align:left;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:18px}.charimg{width:100%;height:145px;object-fit:cover;background:var(--panel2);display:block}.charbody{padding:12px}.charbody strong{display:block;margin-bottom:5px}.field{display:flex;flex-direction:column;gap:7px;margin:13px 0}.field label{font-size:14px;color:var(--text);font-weight:600}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text);padding:12px;outline:none}.field textarea{resize:vertical;min-height:85px}.field textarea.desc{min-height:180px}.counter{text-align:right;color:var(--muted);font-size:12px}.hidden{display:none!important}.actions{display:flex;gap:8px;flex-wrap:wrap}.avatar{width:40px;height:40px;object-fit:cover;border-radius:12px;background:var(--panel2)}.chathead{display:flex;align-items:center;gap:10px;margin-bottom:14px}.messages{display:flex;flex-direction:column;gap:10px;margin:12px 0 18px}.bubble{max-width:92%;padding:12px 14px;border-radius:17px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55;word-break:normal}.bubble.bot{align-self:flex-start;background:var(--bot-bubble);border:1px solid var(--line);color:var(--text);box-shadow:0 3px 12px #0002}.bubble.user{align-self:flex-end;background:var(--user-bubble);color:#fff}.bubble .speech{font-weight:var(--dialogue-weight);color:var(--text)}.bubble .roleplay{color:var(--roleplay);opacity:var(--roleplay-opacity);font-style:italic}.composer{position:sticky;bottom:0;padding:10px 0 calc(10px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--bg) 18%)}.composer .row{align-items:flex-end}.composer textarea{flex:1;min-height:46px;max-height:120px;resize:vertical;background:var(--panel);border:1px solid var(--line);border-radius:16px;color:var(--text);padding:12px}.nav{position:fixed;bottom:0;left:0;right:0;z-index:6;display:flex;justify-content:space-around;padding:10px 8px calc(10px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--bg) 94%,transparent);border-top:1px solid var(--line)}.nav button{background:none;border:0;color:var(--muted);padding:6px;font-size:13px}.nav button.active{color:#b6a6ff}.notice{background:#302515;border:1px solid #715529;color:#ffe3a4;border-radius:12px;padding:12px;font-size:13px;line-height:1.4}.empty{text-align:center;padding:45px 16px}.empty .logo{font-size:54px}.status{font-size:12px;color:var(--muted)}.color-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.color-row input[type=color]{width:54px;height:42px;padding:3px;border-radius:10px;border:1px solid var(--line);background:var(--panel)}.bubble .roleplay,.bubble .speech{white-space:pre-wrap}
+
+/* CSS AJOUTÉ : disposition des messages et boutons de copie */
+.message-row{display:flex;align-items:flex-start;gap:6px;width:100%}
+.message-row.user-row{justify-content:flex-end}
+.message-row.bot-row{justify-content:flex-start}
+.message-row .bubble{flex:0 1 auto;min-width:0}
+.copy-btn{flex:0 0 34px;width:34px;height:34px;margin-top:5px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--muted);font-size:16px;line-height:1}
+.copy-btn:active{transform:scale(.94)}
+.copy-btn.copied{color:#8ff0b0;border-color:#368654}
+@media(min-width:600px){.charimg{height:190px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -32,113 +42,80 @@ function renderEditor(){const c=editId?getChar(editId):null;$('#app').innerHTML=
 function shrinkImage(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{const scale=Math.min(1,700/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',.78))};img.onerror=reject;img.src=reader.result};reader.onerror=reject;reader.readAsDataURL(file)})}
 function formatMessage(text){const lines=String(text||'').split('\n');return lines.map(line=>{const t=line.trim();if(!t)return '';const isRole=/^(\*.*\*|_.*_|（.*）|\(.*\))$/.test(t);return `<span class="${isRole?'roleplay':'speech'}">${esc(line)}</span>`}).join('\n')}
 
-function renderChat(){
- const c=getChar(activeId);
- if(!c){page='home';render();return}
-
- $('#app').innerHTML=`
- <div class="row" style="justify-content:space-between;margin-bottom:14px">
-   <div class="chathead">
-     ${avatar(c)}
-     <div>
-       <h2 style="margin:0">${esc(c.name)}</h2>
-       <div class="muted">Conversation privée sur cet appareil · ${c.language==='en'?'English':c.language==='auto'?'Langue automatique':'Français'}</div>
-     </div>
-   </div>
-   <div class="actions">
-     <button class="btn secondary" id="editBtn">Modifier</button>
-     <button class="btn secondary" id="backBtn">←</button>
-   </div>
- </div>
-
- <div class="notice" style="margin-bottom:12px">
-   Les messages sont sauvegardés ici. Les requêtes sont envoyées au fournisseur IA configuré.
- </div>
-
- <div id="messages" class="messages">
-   ${c.messages.length
-     ? c.messages.map((m,i)=>`
-       <div class="message-row ${m.role==='user'?'user-row':'bot-row'}">
-         <div class="bubble ${m.role==='user'?'user':'bot'}">${formatMessage(m.text)}</div>
-         <button class="copy-btn" type="button" data-copy-index="${i}" aria-label="Copier le message" title="Copier le message">📋</button>
-       </div>
-     `).join('')
-     : `<div class="message-row bot-row">
-          <div class="bubble bot">${formatMessage(c.greeting)}</div>
-          <button class="copy-btn" type="button" data-copy-greeting="true" aria-label="Copier la salutation" title="Copier la salutation">📋</button>
-        </div>`
-   }
- </div>
-
- <div class="composer">
-   <div class="row">
-     <textarea id="messageInput" placeholder="Écris ton message…"></textarea>
-     <button class="btn" id="sendBtn" style="height:46px">➤</button>
-   </div>
-   <div class="muted" style="margin:7px 4px">Réponses IA en ligne · Historique local</div>
- </div>`;
-
- $('#backBtn').onclick=()=>{page='home';render()};
- $('#editBtn').onclick=()=>{editId=c.id;page='editor';render()};
-
- // Copier un message en un clic
- document.querySelectorAll('.copy-btn').forEach(btn=>{
-   btn.onclick=async()=>{
-     const index=btn.dataset.copyIndex;
-     const text=index!==undefined
-       ? getChar(activeId)?.messages?.[Number(index)]?.text
-       : btn.dataset.copyGreeting==='true'
-         ? getChar(activeId)?.greeting
-         : null;
-
-     if(typeof text!=='string')return;
-
-     try{
-       if(navigator.clipboard && window.isSecureContext){
-         await navigator.clipboard.writeText(text);
-       }else{
-         const area=document.createElement('textarea');
-         area.value=text;
-         area.setAttribute('readonly','');
-         area.style.position='fixed';
-         area.style.left='-9999px';
-         document.body.appendChild(area);
-         area.select();
-         const ok=document.execCommand('copy');
-         area.remove();
-         if(!ok)throw new Error('Copie impossible');
-       }
-
-       btn.textContent='✓';
-       btn.classList.add('copied');
-       btn.title='Texte copié !';
-
-       setTimeout(()=>{
-         btn.textContent='📋';
-         btn.classList.remove('copied');
-         btn.title='Copier le message';
-       },1500);
-
-     }catch(err){
-       alert('La copie automatique a échoué. Essaie de sélectionner le texte du message.');
-     }
-   };
- });
-
- const send=()=>sendMessage(c.id);
- $('#sendBtn').onclick=send;
-
- $('#messageInput').addEventListener('keydown',e=>{
-   if(e.key==='Enter'&&!e.shiftKey){
-     e.preventDefault();
-     send();
-   }
- });
-
- $('#messages').scrollTop=$('#messages').scrollHeight;
+/* JavaScript AJOUTÉ : copie du texte d'un message */
+async function copyMessage(button){
+const text=button.dataset.copyText||'';
+try{
+if(navigator.clipboard&&window.isSecureContext){
+await navigator.clipboard.writeText(text);
+}else{
+const area=document.createElement('textarea');
+area.value=text;
+area.style.position='fixed';
+area.style.opacity='0';
+document.body.appendChild(area);
+area.select();
+const success=document.execCommand('copy');
+area.remove();
+if(!success)throw new Error('Copie impossible');
+}
+button.textContent='✓';
+button.classList.add('copied');
+button.setAttribute('aria-label','Message copié');
+setTimeout(()=>{
+button.textContent='📋';
+button.classList.remove('copied');
+button.setAttribute('aria-label','Copier le message');
+},1500);
+}catch(error){
+alert('La copie automatique a échoué. Essaie de sélectionner le texte du message.');
+}
 }
 
-async fundction sendMessage(id){if(busy)return;const c=getChar(id),input=$('#messageInput'),text=input.value.trim();if(!c||!text)return;if(!settings.apiKey){alert('Ajoute une clé API dans Réglages IA pour activer les réponses.');page='settings';render();return}c.messages.push({role:'user',text,at:Date.now()});persist();busy=true;renderChat();$('#sendBtn').disabled=true;$('#sendBtn').textContent='…';try{const history=c.messages.slice(-16).map(m=>({role:m.role==='assistant'?'assistant':'user',content:m.text}));const modeRules=[settings.nsfw?"Thèmes adultes : les personnages impliqués doivent être explicitement adultes et consentants.":"Évite les scènes sexuelles explicites.",settings.gore?"Horreur et violence fictives décrites de façon narrative.":"Limite les descriptions graphiques de violence."].join('\n');const lang=c.language==='en'?'English. Reply only in natural English.':c.language==='auto'?'Reply in the same language as the latest user message.':'French. Réponds uniquement en français naturel.';const system=`Tu incarnes ${c.name}. Description/personnalité :\n${c.description}\nSalutation : ${c.greeting}\nLANGUE : ${lang}\nRÈGLES DE RÉPONSE : écris des réponses complètes et naturelles, avec des phrases et paragraphes terminés. Ne coupe jamais volontairement une phrase. Développe la scène avec assez de détails, sans résumer ni répéter. Si tu approches de la limite, termine la phrase et le paragraphe avant de conclure. En roleplay, tu peux distinguer les actions entre astérisques et les paroles en texte normal. Reste fidèle au personnage.\nPréférences :\n${modeRules}\nInstructions personnalisées : ${settings.customInstructions||'Aucune'}`;const model=settings.model||'openrouter/free';let reply='';let messages=[{role:'system',content:system},...history];for(let attempt=0;attempt<2;attempt++){const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{method:'POST',headers:{'Authorization':'Bearer '+settings.apiKey,'Content-Type':'application/json','HTTP-Referer':location.href,'X-Title':'Mon IA Privée'},body:JSON.stringify({model,messages,temperature:.85,max_tokens:attempt===0?1200:800,stream:false})});const data=await res.json();if(!res.ok)throw new Error(data?.error?.message||`Erreur API (${res.status})`);const choice=data.choices?.[0],content=choice?.message?.content;if(content)reply=(Array.isArray(content)?content.map(x=>x.text||'').join(''):String(content)).trim();if(reply&&choice?.finish_reason!=='length')break;if(reply&&choice?.finish_reason==='length'&&attempt===0){messages=[...messages,{role:'assistant',content:reply},{role:'user',content:'Continue exactement à partir de la fin de ta réponse précédente. Ne répète rien. Termine les phrases et le paragraphe naturellement.'}];continue}if(!reply)throw new Error('Le modèle n’a renvoyé aucune réponse. Essaie un autre modèle gratuit.')}if(!reply)throw new Error('Réponse vide du modèle.');getChar(id).messages.push({role:'assistant',text:reply,at:Date.now()});persist()}catch(err){getChar(id).messages.push({role:'assistant',text:'[Erreur de génération] '+err.message,at:Date.now()});persist()}finally{busy=false;renderChat()}}
+function renderChat(){
+const c=getChar(activeId);
+if(!c){page='home';render();return}
+const messageList=c.messages.length?c.messages.map((m,i)=>{
+const isUser=m.role==='user';
+return `<div class="message-row ${isUser?'user-row':'bot-row'}">
+<div class="bubble ${isUser?'user':'bot'}">${formatMessage(m.text)}</div>
+<button type="button" class="copy-btn" data-copy-index="${i}" aria-label="Copier le message" title="Copier le message">📋</button>
+</div>`;
+}).join(''):`<div class="message-row bot-row">
+<div class="bubble bot">${formatMessage(c.greeting)}</div>
+<button type="button" class="copy-btn" data-copy-greeting="true" aria-label="Copier le message" title="Copier le message">📋</button>
+</div>`;
+
+$('#app').innerHTML=`<div class="row" style="justify-content:space-between;margin-bottom:14px"><div class="chathead">${avatar(c)}<div><h2 style="margin:0">${esc(c.name)}</h2><div class="muted">Conversation privée sur cet appareil · ${c.language==='en'?'English':c.language==='auto'?'Langue automatique':'Français'}</div></div></div><div class="actions"><button class="btn secondary" id="editBtn">Modifier</button><button class="btn secondary" id="backBtn">←</button></div></div><div class="notice" style="margin-bottom:12px">Les messages sont sauvegardés ici. Les requêtes sont envoyées au fournisseur IA configuré.</div><div id="messages" class="messages">${messageList}</div><div class="composer"><div class="row"><textarea id="messageInput" placeholder="Écris ton message…"></textarea><button class="btn" id="sendBtn" style="height:46px">➤</button></div><div class="muted" style="margin:7px 4px">Réponses IA en ligne · Historique local</div></div>`;
+
+$('#backBtn').onclick=()=>{page='home';render()};
+$('#editBtn').onclick=()=>{editId=c.id;page='editor';render()};
+const send=()=>sendMessage(c.id);
+$('#sendBtn').onclick=send;
+$('#messageInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
+
+$('#messages').querySelectorAll('.copy-btn').forEach(button=>{
+button.onclick=()=>{
+let text='';
+if(button.dataset.copyGreeting==='true'){
+text=c.greeting;
+}else{
+const index=Number(button.dataset.copyIndex);
+text=c.messages[index]?.text||'';
+}
+button.dataset.copyText=text;
+copyMessage(button);
+};
+});
+
+$('#messages').scrollTop=$('#messages').scrollHeight;
+}
+;if(page==='settings')renderSettings();if(page==='privacy')renderPrivacy();if(page==='appearance')renderAppearance()}
+function renderEditor(){const c=editId?getChar(editId):null;$('#app').innerHTML=`<div class="row" style="justify-content:space-between"><h2>${c?'Modifier le personnage':'Créer un chatbot'}</h2><button class="btn secondary" id="backBtn">Retour</button></div><form id="characterForm"><div class="field"><label for="name">Nom du personnage *</label><input id="name" maxlength="100" required value="${esc(c?.name||'')}" placeholder="Ex. Gary Smith"></div><div class="field"><label for="greeting">Salutation / premier message *</label><textarea id="greeting" maxlength="3000" required>${esc(c?.greeting||'')}</textarea><div class="counter" id="greetCount"></div></div><div class="field"><label for="description">Description et personnalité *</label><textarea class="desc" id="description" maxlength="32000" required>${esc(c?.description||'')}</textarea><div class="counter" id="descCount"></div></div><div class="field"><label for="language">Langue des réponses</label><select id="language"><option value="fr" ${(c?.language||'fr')==='fr'?'selected':''}>Français</option><option value="en" ${c?.language==='en'?'selected':''}>English</option><option value="auto" ${c?.language==='auto'?'selected':''}>Suivre la langue de mes messages</option></select><div class="muted">Ce choix est enregistré pour ce personnage.</div></div><div class="field"><label for="photo">Photo du personnage</label><input id="photo" type="file" accept="image/*"><div class="muted">Choisis une image dans Photos. Elle est redimensionnée.</div><div id="photoPreview">${c?.photo?`<img src="${c.photo}" style="width:120px;height:120px;object-fit:cover;border-radius:16px">`:''}</div><button type="button" class="btn secondary ${c?.photo?'':'hidden'}" id="removePhoto">Retirer la photo</button></div><div class="actions"><button class="btn" type="submit">Enregistrer le personnage</button><button class="btn secondary" type="button" id="cancelEdit">Annuler</button></div></form>`;let photo=c?.photo||null;const update=()=>{$('#greetCount').textContent=$('#greeting').value.length+'/3000';$('#descCount').textContent=$('#description').value.length+'/32000 caractères'};update();$('#greeting').addEventListener('input',update);$('#description').addEventListener('input',update);$('#photo').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;photo=await shrinkImage(f);$('#photoPreview').innerHTML=`<img src="${photo}" style="width:120px;height:120px;object-fit:cover;border-radius:16px">`;$('#removePhoto').classList.remove('hidden')};$('#removePhoto').onclick=()=>{photo=null;$('#photoPreview').innerHTML='';$('#removePhoto').classList.add('hidden');$('#photo').value=''};$('#backBtn').onclick=$('#cancelEdit').onclick=()=>{page='home';editId=null;render()};$('#characterForm').onsubmit=e=>{e.preventDefault();const name=$('#name').value.trim(),greeting=$('#greeting').value.trim(),description=$('#description').value;if(!name||!greeting||!description)return;const obj={id:c?.id||crypto.randomUUID(),name,greeting,description,photo,language:$('#language').value,messages:c?.messages||[],created:c?.created||Date.now()};if(c)chars=chars.map(x=>x.id===c.id?obj:x);else chars.unshift(obj);persist();editId=null;page='home';render()}}
+function shrinkImage(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{const scale=Math.min(1,700/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',.78))};img.onerror=reject;img.src=reader.result};reader.onerror=reject;reader.readAsDataURL(file)})}
+function formatMessage(text){const lines=String(text||'').split('\n');return lines.map(line=>{const t=line.trim();if(!t)return '';const isRole=/^(\*.*\*|_.*_|（.*）|\(.*\))$/.test(t);return `<span class="${isRole?'roleplay':'speech'}">${esc(line)}</span>`}).join('\n')}
+function renderChat(){const c=getChar(activeId);if(!c){page='home';render();return}$('#app').innerHTML=`<div class="row" style="justify-content:space-between;margin-bottom:14px"><div class="chathead">${avatar(c)}<div><h2 style="margin:0">${esc(c.name)}</h2><div class="muted">Conversation privée sur cet appareil · ${c.language==='en'?'English':c.language==='auto'?'Langue automatique':'Français'}</div></div></div><div class="actions"><button class="btn secondary" id="editBtn">Modifier</button><button class="btn secondary" id="backBtn">←</button></div></div><div class="notice" style="margin-bottom:12px">Les messages sont sauvegardés ici. Les requêtes sont envoyées au fournisseur IA configuré.</div><div id="messages" class="messages">${c.messages.length?c.messages.map(m=>`<div class="bubble ${m.role==='user'?'user':'bot'}">${formatMessage(m.text)}</div>`).join(''):`<div class="bubble bot">${formatMessage(c.greeting)}</div>`}</div><div class="composer"><div class="row"><textarea id="messageInput" placeholder="Écris ton message…"></textarea><button class="btn" id="sendBtn" style="height:46px">➤</button></div><div class="muted" style="margin:7px 4px">Réponses IA en ligne · Historique local</div></div>`;$('#backBtn').onclick=()=>{page='home';render()};$('#editBtn').onclick=()=>{editId=c.id;page='editor';render()};const send=()=>sendMessage(c.id);$('#sendBtn').onclick=send;$('#messageInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});$('#messages').scrollTop=$('#messages').scrollHeight}
+async function sendMessage(id){if(busy)return;const c=getChar(id),input=$('#messageInput'),text=input.value.trim();if(!c||!text)return;if(!settings.apiKey){alert('Ajoute une clé API dans Réglages IA pour activer les réponses.');page='settings';render();return}c.messages.push({role:'user',text,at:Date.now()});persist();busy=true;renderChat();$('#sendBtn').disabled=true;$('#sendBtn').textContent='…';try{const history=c.messages.slice(-16).map(m=>({role:m.role==='assistant'?'assistant':'user',content:m.text}));const modeRules=[settings.nsfw?"Thèmes adultes : les personnages impliqués doivent être explicitement adultes et consentants.":"Évite les scènes sexuelles explicites.",settings.gore?"Horreur et violence fictives décrites de façon narrative.":"Limite les descriptions graphiques de violence."].join('\n');const lang=c.language==='en'?'English. Reply only in natural English.':c.language==='auto'?'Reply in the same language as the latest user message.':'French. Réponds uniquement en français naturel.';const system=`Tu incarnes ${c.name}. Description/personnalité :\n${c.description}\nSalutation : ${c.greeting}\nLANGUE : ${lang}\nRÈGLES DE RÉPONSE : écris des réponses complètes et naturelles, avec des phrases et paragraphes terminés. Ne coupe jamais volontairement une phrase. Développe la scène avec assez de détails, sans résumer ni répéter. Si tu approches de la limite, termine la phrase et le paragraphe avant de conclure. En roleplay, tu peux distinguer les actions entre astérisques et les paroles en texte normal. Reste fidèle au personnage.\nPréférences :\n${modeRules}\nInstructions personnalisées : ${settings.customInstructions||'Aucune'}`;const model=settings.model||'openrouter/free';let reply='';let messages=[{role:'system',content:system},...history];for(let attempt=0;attempt<2;attempt++){const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{method:'POST',headers:{'Authorization':'Bearer '+settings.apiKey,'Content-Type':'application/json','HTTP-Referer':location.href,'X-Title':'Mon IA Privée'},body:JSON.stringify({model,messages,temperature:.85,max_tokens:attempt===0?1200:800,stream:false})});const data=await res.json();if(!res.ok)throw new Error(data?.error?.message||`Erreur API (${res.status})`);const choice=data.choices?.[0],content=choice?.message?.content;if(content)reply=(Array.isArray(content)?content.map(x=>x.text||'').join(''):String(content)).trim();if(reply&&choice?.finish_reason!=='length')break;if(reply&&choice?.finish_reason==='length'&&attempt===0){messages=[...messages,{role:'assistant',content:reply},{role:'user',content:'Continue exactement à partir de la fin de ta réponse précédente. Ne répète rien. Termine les phrases et le paragraphe naturellement.'}];continue}if(!reply)throw new Error('Le modèle n’a renvoyé aucune réponse. Essaie un autre modèle gratuit.')}if(!reply)throw new Error('Réponse vide du modèle.');getChar(id).messages.push({role:'assistant',text:reply,at:Date.now()});persist()}catch(err){getChar(id).messages.push({role:'assistant',text:'[Erreur de génération] '+err.message,at:Date.now()});persist()}finally{busy=false;renderChat()}}
 function renderSettings(){$('#app').innerHTML=`<h2>Réglages IA</h2><div class="notice">Les modes ajustent les instructions envoyées au modèle et ne remplacent pas ses propres règles.</div><div class="card stack" style="margin-top:12px"><label class="row" style="justify-content:space-between"><span><strong>Mode NSFW / thèmes adultes</strong><div class="muted">Romance et ton sensuel entre adultes consentants.</div></span><input id="nsfwMode" type="checkbox" ${settings.nsfw?'checked':''} style="width:24px;height:24px"></label><label class="row" style="justify-content:space-between"><span><strong>Mode Gore / horreur</strong><div class="muted">Horreur fictive et violence narrative.</div></span><input id="goreMode" type="checkbox" ${settings.gore?'checked':''} style="width:24px;height:24px"></label><div class="field"><label for="customInstructions">Instructions personnalisées</label><textarea id="customInstructions" maxlength="6000">${esc(settings.customInstructions||'')}</textarea></div></div><div class="field"><label for="apiKey">Clé API OpenRouter</label><input id="apiKey" type="password" autocomplete="off" placeholder="sk-or-v1-…" value="${esc(settings.apiKey)}"><div class="muted">Stockée localement dans ce navigateur. Ne partage jamais cette clé.</div><a href="https://openrouter.ai/keys" target="_blank" rel="noopener" style="color:#b6a6ff">Gérer la clé ↗</a></div><div class="field"><label for="model">Modèle</label><input id="model" value="${esc(settings.model||'openrouter/free')}"><a href="https://openrouter.ai/models?max_price=0" target="_blank" rel="noopener" style="color:#b6a6ff">Voir les modèles gratuits ↗</a></div><div class="actions"><button class="btn" id="saveSettings">Enregistrer</button><button class="btn secondary" id="testBtn">Tester la connexion</button></div><div id="testResult" class="muted" style="margin-top:12px"></div>`;const save=()=>{settings.apiKey=$('#apiKey').value.trim();settings.model=$('#model').value.trim()||'openrouter/free';settings.nsfw=$('#nsfwMode').checked;settings.gore=$('#goreMode').checked;settings.customInstructions=$('#customInstructions').value.trim();saveSettings()};$('#saveSettings').onclick=()=>{save();$('#testResult').textContent='Réglages enregistrés.'};$('#testBtn').onclick=async()=>{save();$('#testResult').textContent='Test en cours…';try{const r=await fetch('https://openrouter.ai/api/v1/chat/completions',{method:'POST',headers:{'Authorization':'Bearer '+settings.apiKey,'Content-Type':'application/json'},body:JSON.stringify({model:settings.model,messages:[{role:'user',content:'Réponds uniquement : Connexion réussie.'}],max_tokens:40})});const d=await r.json();$('#testResult').textContent=r.ok?'Connexion réussie : '+(d.choices?.[0]?.message?.content||'réponse reçue'):'Échec : '+(d.error?.message||r.status)}catch(e){$('#testResult').textContent='Erreur réseau : '+e.message}}}
 function renderAppearance(){$('#app').innerHTML=`<h2>Apparence</h2><div class="card stack"><div class="field"><label for="theme">Thème</label><select id="theme"><option value="dark" ${appearance.theme==='dark'?'selected':''}>Sombre</option><option value="light" ${appearance.theme==='light'?'selected':''}>Clair</option><option value="custom" ${appearance.theme==='custom'?'selected':''}>Personnalisé</option></select></div><div class="field"><label>Couleur de fond</label><div class="color-row"><input type="color" id="bgColor" value="${appearance.bgColor}"><span class="muted">Arrière-plan général</span></div></div><div class="field"><label>Couleur des panneaux</label><div class="color-row"><input type="color" id="panelColor" value="${appearance.panelColor}"><span class="muted">Cartes et bulles IA</span></div></div><div class="field"><label>Couleur du texte</label><div class="color-row"><input type="color" id="textColor" value="${appearance.textColor}"></div></div><div class="field"><label>Couleur des bulles utilisateur</label><div class="color-row"><input type="color" id="userBubble" value="${appearance.userBubble}"></div></div><div class="field"><label>Couleur des bulles IA</label><div class="color-row"><input type="color" id="botBubble" value="${appearance.botBubble}"></div></div><div class="field"><label>Couleur de la narration / roleplay</label><div class="color-row"><input type="color" id="roleplayColor" value="${appearance.roleplayColor}"></div></div><label class="row"><input id="dialogueBold" type="checkbox" ${appearance.dialogueBold?'checked':''} style="width:22px;height:22px"> Paroles en gras</label><div class="field"><label for="roleplayOpacity">Opacité du roleplay : <span id="opacityValue">${appearance.roleplayOpacity}%</span></label><input id="roleplayOpacity" type="range" min="20" max="100" value="${appearance.roleplayOpacity}"></div><div class="field"><label for="bgPhoto">Arrière-plan depuis Photos</label><input id="bgPhoto" type="file" accept="image/*"><div class="muted">L’image est stockée sur cet appareil. Une grande image peut remplir le stockage local.</div><button class="btn secondary" id="removeBg">Retirer l’image de fond</button></div><div class="actions"><button class="btn" id="saveAppearance">Enregistrer l’apparence</button></div><div class="muted">Les réglages d’apparence sont propres à ce navigateur.</div></div>`;const ids=['bgColor','panelColor','textColor','userBubble','botBubble','roleplayColor','theme','dialogueBold','roleplayOpacity'];const read=()=>{appearance.bgColor=$('#bgColor').value;appearance.panelColor=$('#panelColor').value;appearance.textColor=$('#textColor').value;appearance.userBubble=$('#userBubble').value;appearance.botBubble=$('#botBubble').value;appearance.roleplayColor=$('#roleplayColor').value;appearance.theme=$('#theme').value;appearance.dialogueBold=$('#dialogueBold').checked;appearance.roleplayOpacity=Number($('#roleplayOpacity').value);$('#opacityValue').textContent=appearance.roleplayOpacity+'%';applyAppearance()};ids.forEach(id=>$('#'+id).addEventListener('input',read));$('#saveAppearance').onclick=()=>{read();saveAppearance();alert('Apparence enregistrée.')};$('#bgPhoto').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{appearance.bgImage=await shrinkImage(f);applyAppearance()}catch{alert('Impossible de lire cette image.')}};$('#removeBg').onclick=()=>{appearance.bgImage='';applyAppearance();$('#bgPhoto').value=''}}
 function renderPrivacy(){$('#app').innerHTML=`<h2>Confidentialité & sauvegardes</h2><div class="card stack"><strong>Stockage local</strong><div class="muted">Personnages, photos, descriptions et historiques restent dans le navigateur de cet appareil. Ils ne se synchronisent pas automatiquement.</div><strong>Envoi au fournisseur IA</strong><div class="muted">La description du personnage et les derniers messages sont envoyés au fournisseur choisi pour générer une réponse. Évite les informations sensibles.</div><strong>Important</strong><div class="muted">Le stockage local n'est pas un coffre-fort. Exporte régulièrement une sauvegarde. Les paramètres visuels et la clé API ne sont pas inclus dans l'export.</div><div class="actions"><button class="btn" id="exportBtn">Exporter une sauvegarde</button><label class="btn secondary" for="importFile" style="display:inline-flex;align-items:center">Importer une sauvegarde</label><input id="importFile" type="file" accept="application/json" class="hidden"></div><button class="btn danger" id="clearBtn">Supprimer toutes les données locales</button></div>`;$('#exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify({version:2,characters:chars,settings:{model:settings.model}},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='mon-ia-privee-sauvegarde.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};$('#importFile').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!Array.isArray(d.characters))throw Error('Fichier invalide');if(confirm('Remplacer les personnages actuels par la sauvegarde ?')){chars=d.characters;persist();page='home';render()}}catch(err){alert('Import impossible : '+err.message)}};$('#clearBtn').onclick=()=>{if(confirm('Supprimer définitivement les personnages, photos et conversations stockés dans ce navigateur ?')){chars=[];persist();page='home';render()}}}
