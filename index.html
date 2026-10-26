@@ -49,6 +49,7 @@ main{max-width:760px;margin:auto;padding:calc(16px + env(safe-area-inset-top)) 1
 .composer textarea{flex:1;min-height:46px;max-height:120px;resize:vertical;background:var(--panel);border:1px solid var(--line);border-radius:16px;color:var(--text);padding:12px}
 .color-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .color-row input[type=color]{width:54px;height:42px;padding:3px;border-radius:10px;border:1px solid var(--line);background:var(--panel)}
+.notice{background:#302515;border:1px solid #715529;color:#ffe3a4;border-radius:12px;padding:12px;font-size:13px;line-height:1.4}
 .status{display:none}
 .title{font-size:34px;font-weight:700;margin:0}
 .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
@@ -103,18 +104,6 @@ main{max-width:760px;margin:auto;padding:calc(16px + env(safe-area-inset-top)) 1
 .ctop .nm{flex:1;min-width:0}
 .ctop h2{margin:0;font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hrow{display:flex;align-items:center;gap:14px;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:18px;color:var(--text);padding:16px;font-size:18px;text-align:left;margin-bottom:12px}
-@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-</style>
-</head>
-<body>
-<div id="status" class="status"></div>
-<main id="app"></main>
-<div id="sheet" class="sheet hidden"></div>
-<nav class="nav" id="nav"></nav>
-/* ===== CHAT PLEIN ÉCRAN + EN-TÊTE FIXE + PANNEAU DU PERSONNAGE ===== */
-(function(){
-const st=document.createElement('style');
-st.textContent=`
 body.inchat .nav{display:none}
 body.inchat main{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;padding:calc(88px + env(safe-area-inset-top)) 14px 0}
 body.inchat .messages{flex:1}
@@ -133,73 +122,14 @@ body.inchat .composer{bottom:0;padding-bottom:calc(10px + env(safe-area-inset-bo
 .tg::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .2s}
 .tg:checked{background:#2f6bff}
 .tg:checked::after{left:25px}
-`;
-document.head.appendChild(st);
-const baseRender=render;
-render=function(){document.body.classList.toggle('inchat',page==='chat');baseRender()};
-const baseClose=closeSheet;
-closeSheet=function(){baseClose();const b=document.getElementById('csb');if(b)b.remove()};
-})();
-function chatSheet(view){
-const c=getChar(activeId);
-if(!c)return;
-if(!document.getElementById('csb')){const b=document.createElement('div');b.id='csb';b.className='csb';document.body.appendChild(b)}
-const s=$('#sheet');
-s.className='sheet pop cs';
-const x='<button type="button" class="csx" data-cs="close" aria-label="Fermer">✕</button>';
-const row=(k,i,l,cls)=>`<button type="button" class="csr ${cls||''}" data-cs="${k}">${ic(i,false,22)}<span>${l}</span></button>`;
-const back=row('menu','back','Retour');
-const head=av(c,'csav')+'<div class="csn">'+esc(c.name)+'</div>';
-const lang=c.language==='en'?'English':c.language==='auto'?'Langue automatique':'Français';
-let h='';
-if(view==='char'){
-h=x+head+'<div class="muted" style="text-align:center">'+lang+(c.cat?' · '+esc(c.cat):'')+'</div><div class="csd">'+esc(c.description)+'</div>'+row('edit','edit','Modifier le personnage')+back;
-}else if(view==='creator'){
-const mine=c.own!==false;
-const letter=esc(String(profile.name||'?').charAt(0).toUpperCase());
-const pic=(mine&&profile.photo)?'<img class="csav" src="'+profile.photo+'" alt="">':'<div class="csav" style="background:'+grad(mine?profile.name:'IA')+'">'+(mine?letter:'∞')+'</div>';
-h=x+pic+'<div class="csn">'+esc(mine?profile.name:'Mon IA Privée')+'</div><div class="muted" style="text-align:center">'+(mine?'Créateur de ce personnage':'Suggestion intégrée à l’application')+'</div>'+((mine&&profile.persona)?'<div class="csd">'+esc(profile.persona)+'</div>':'')+back;
-}else{
-const nb=(c.messages||[]).length;
-h=x+head+'<div class="muted" style="text-align:center">'+esc(String(c.description||'').replace(/\s+/g,' ').slice(0,70))+'</div><div class="muted" style="text-align:center;margin-top:6px">'+nb+' messages · Créé '+ago(c.created).toLowerCase()+'</div>'
-+row('char','user','Afficher le profil du personnage')
-+row('creator','persona','Afficher le profil du créateur')
-+'<label class="csr">'+ic('bell',false,22)+'<span style="flex:1">Messages d’absence</span><input type="checkbox" id="absTg" class="tg" '+(c.absence?'checked':'')+'></label>'
-+row('refresh','chat','Actualiser ce chat')
-+row('new','plus','Démarrer un nouveau chat','blue');
-}
-s.innerHTML=h;
-s.scrollTop=0;
-}
-document.addEventListener('click',function(e){
-const t=e.target,g=s=>t.closest?t.closest(s):null;
-if(page==='chat'&&$('#sheet').classList.contains('hidden')&&g('.ctop .nm, .ctop .gimg')){chatSheet('menu');return}
-const el=g('[data-cs]');
-if(!el)return;
-const c=getChar(activeId);
-if(!c)return;
-const k=el.dataset.cs;
-if(k==='close')closeSheet();
-else if(k==='menu')chatSheet('menu');
-else if(k==='char')chatSheet('char');
-else if(k==='creator')chatSheet('creator');
-else if(k==='edit'){editId=c.id;page='editor';render()}
-else if(k==='refresh'){
-closeSheet();
-const m=c.messages||[];
-if(m.length&&String(m[m.length-1].text).startsWith('[Erreur de génération]')){m.pop();persist()}
-renderChat();
-toast('Chat actualisé');
-}else if(k==='new'){
-if(confirm('Effacer cette conversation et recommencer avec la salutation ?')){c.messages=[];persist();closeSheet();renderChat();toast('Nouveau chat démarré')}
-}
-},true);
-document.addEventListener('change',function(e){
-if(e.target&&e.target.id==='absTg'){
-const c=getChar(activeId);
-if(c){c.absence=e.target.checked;persist();toast(c.absence?'Messages d’absence activés':'Messages d’absence désactivés')}
-}
-});
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div id="status" class="status"></div>
+<main id="app"></main>
+<div id="sheet" class="sheet hidden"></div>
+<nav class="nav" id="nav"></nav>
 <script>
 const STORE='monIAPrive_v1',SETTINGS='monIAPrive_settings_v1',APPEAR='monIAPrive_appearance_v1',PROF='monIAPrive_profile_v1';
 let chars=[],settings={apiKey:'',model:'openrouter/free',nsfw:false,gore:false,customInstructions:''},appearance={theme:'dark',bgColor:'#111111',panelColor:'#1d1d1d',textColor:'#ffffff',userBubble:'#6344e8',botBubble:'#262626',roleplayColor:'#a3a3a3',dialogueBold:true,roleplayOpacity:78,bgImage:''},profile={name:'Moi',photo:'',persona:''};
@@ -276,8 +206,9 @@ updateNavH();
 }
 let pSort='recent';
 function backTab(){page=tab;activeId=null;editId=null;render()}
-function closeSheet(){const s=$('#sheet');s.classList.add('hidden');s.classList.remove('pop');s.innerHTML=''}
+function closeSheet(){const s=$('#sheet');s.classList.add('hidden');s.classList.remove('pop');s.innerHTML='';const b=document.getElementById('csb');if(b)b.remove()}
 function render(){
+document.body.classList.toggle('inchat',page==='chat');
 closeSheet();
 renderNav();
 window.scrollTo(0,0);
@@ -467,6 +398,37 @@ alert('Impossible de copier automatiquement. Essaie à nouveau.');
 });
 scrollBottom();
 }
+function chatSheet(view){
+const c=getChar(activeId);
+if(!c)return;
+if(!document.getElementById('csb')){const b=document.createElement('div');b.id='csb';b.className='csb';document.body.appendChild(b)}
+const s=$('#sheet');
+s.className='sheet pop cs';
+const x='<button type="button" class="csx" data-cs="close" aria-label="Fermer">✕</button>';
+const row=(k,i,l,cls)=>`<button type="button" class="csr ${cls||''}" data-cs="${k}">${ic(i,false,22)}<span>${l}</span></button>`;
+const back=row('menu','back','Retour');
+const head=av(c,'csav')+'<div class="csn">'+esc(c.name)+'</div>';
+const lang=c.language==='en'?'English':c.language==='auto'?'Langue automatique':'Français';
+let h='';
+if(view==='char'){
+h=x+head+'<div class="muted" style="text-align:center">'+lang+(c.cat?' · '+esc(c.cat):'')+'</div><div class="csd">'+esc(c.description)+'</div>'+row('edit','edit','Modifier le personnage')+back;
+}else if(view==='creator'){
+const mine=c.own!==false;
+const letter=esc(String(profile.name||'?').charAt(0).toUpperCase());
+const pic=(mine&&profile.photo)?'<img class="csav" src="'+profile.photo+'" alt="">':'<div class="csav" style="background:'+grad(mine?profile.name:'IA')+'">'+(mine?letter:'∞')+'</div>';
+h=x+pic+'<div class="csn">'+esc(mine?profile.name:'Mon IA Privée')+'</div><div class="muted" style="text-align:center">'+(mine?'Créateur de ce personnage':'Suggestion intégrée à l’application')+'</div>'+((mine&&profile.persona)?'<div class="csd">'+esc(profile.persona)+'</div>':'')+back;
+}else{
+const nb=(c.messages||[]).length;
+h=x+head+'<div class="muted" style="text-align:center">'+esc(String(c.description||'').replace(/\s+/g,' ').slice(0,70))+'</div><div class="muted" style="text-align:center;margin-top:6px">'+nb+' messages · Créé '+ago(c.created).toLowerCase()+'</div>'
++row('char','user','Afficher le profil du personnage')
++row('creator','persona','Afficher le profil du créateur')
++'<label class="csr">'+ic('bell',false,22)+'<span style="flex:1">Messages d’absence</span><input type="checkbox" id="absTg" class="tg" '+(c.absence?'checked':'')+'></label>'
++row('refresh','chat','Actualiser ce chat')
++row('new','plus','Démarrer un nouveau chat','blue');
+}
+s.innerHTML=h;
+s.scrollTop=0;
+}
 async function sendMessage(id){
 if(busy)return;
 const c=getChar(id),input=$('#messageInput');
@@ -591,9 +553,37 @@ $('#clearBtn').onclick=()=>{
 if(confirm('Supprimer définitivement les personnages, photos et conversations stockés dans ce navigateur ?')){chars=[];persist();tab='home';page='home';render()}
 };
 }
+document.addEventListener('click',function(e){
+const t=e.target,g=s=>t.closest?t.closest(s):null;
+if(page==='chat'&&$('#sheet').classList.contains('hidden')&&g('.ctop .nm, .ctop .gimg')){chatSheet('menu');return}
+const el=g('[data-cs]');
+if(!el)return;
+const c=getChar(activeId);
+if(!c)return;
+const k=el.dataset.cs;
+if(k==='close')closeSheet();
+else if(k==='menu')chatSheet('menu');
+else if(k==='char')chatSheet('char');
+else if(k==='creator')chatSheet('creator');
+else if(k==='edit'){editId=c.id;page='editor';render()}
+else if(k==='refresh'){
+closeSheet();
+const m=c.messages||[];
+if(m.length&&String(m[m.length-1].text).startsWith('[Erreur de génération]')){m.pop();persist()}
+renderChat();
+toast('Chat actualisé');
+}else if(k==='new'){
+if(confirm('Effacer cette conversation et recommencer avec la salutation ?')){c.messages=[];persist();closeSheet();renderChat();toast('Nouveau chat démarré')}
+}
+},true);
+document.addEventListener('change',function(e){
+if(e.target&&e.target.id==='absTg'){
+const c=getChar(activeId);
+if(c){c.absence=e.target.checked;persist();toast(c.absence?'Messages d’absence activés':'Messages d’absence désactivés')}
+}
+});
 document.addEventListener('click',e=>{
-const t=e.target;
-const g=s=>t.closest?t.closest(s):null;
+const t=e.target,g=s=>t.closest?t.closest(s):null;
 const sh=$('#sheet');
 if(!sh.classList.contains('hidden')&&sh.classList.contains('pop')&&!g('#sheet')&&!g('[data-menu]')){closeSheet();return}
 let el;
@@ -647,4 +637,3 @@ window.addEventListener('load',updateNavH);
 </script>
 </body>
 </html>
-
