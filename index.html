@@ -637,3 +637,49 @@ window.addEventListener('load',updateNavH);
 </script>
 </body>
 </html>
+<script>
+function trimToSentence(t){
+let end=-1,m;
+const re=/[.!?…][*"”»)_]*(?=\s|$)/g;
+while((m=re.exec(t))!==null)end=m.index+m[0].length;
+let out=end>0?t.slice(0,end):t;
+if((out.match(/\*/g)||[]).length%2)out+='*';
+return out;
+}
+async function sendMessage(id){
+if(busy)return;
+const c=getChar(id),input=$('#messageInput');
+if(!c||!input)return;
+const text=input.value.trim();
+if(!text)return;
+if(!settings.apiKey){alert('Ajoute une clé API dans Réglages IA pour activer les réponses.');tab='profile';page='settings';render();return}
+if(!Array.isArray(c.messages))c.messages=[];
+c.messages.push({role:'user',text,at:Date.now()});
+persist();busy=true;renderChat();
+try{
+const history=c.messages.filter(m=>!String(m.text).startsWith('[Erreur de génération]')).slice(-16).map(m=>({role:m.role==='assistant'?'assistant':'user',content:m.text}));
+const modeRules=[settings.nsfw?"Thèmes adultes : les personnages impliqués doivent être explicitement adultes et consentants.":"Évite les scènes sexuelles explicites.",settings.gore?"Horreur et violence fictives décrites de façon narrative.":"Limite les descriptions graphiques de violence."].join('\n');
+const lang=c.language==='en'?'English. Reply only in natural English.':c.language==='auto'?'Reply in the same language as the latest user message.':'French. Réponds uniquement en français naturel.';
+const who=profile.persona?`\nL’utilisateur s’appelle ${profile.name}. À propos de lui : ${profile.persona}`:'';
+const system=`Tu incarnes ${c.name}. Description/personnalité :\n${c.description}\nSalutation : ${c.greeting}${who}\nLANGUE : ${lang}\nRÈGLES DE RÉPONSE : écris en phrases complètes, correctes et cohérentes, sans mots inventés ni mélange de langues. Longueur : environ 120 à 250 mots, jamais plus de 300. Termine toujours ta dernière phrase. En roleplay, mets les actions entre astérisques et les paroles en texte normal. Reste fidèle au personnage et à ce qui a déjà été dit.\nPréférences :\n${modeRules}\nInstructions personnalisées : ${settings.customInstructions||'Aucune'}`;
+const model=settings.model||'openrouter/free';
+const messages=[{role:'system',content:system},...history];
+const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{method:'POST',headers:{'Authorization':'Bearer '+settings.apiKey,'Content-Type':'application/json','HTTP-Referer':location.href,'X-Title':'Mon IA Privée'},body:JSON.stringify({model,messages,temperature:.8,max_tokens:1200,stream:false})});
+const data=await res.json();
+if(!res.ok)throw new Error(data?.error?.message||`Erreur API (${res.status})`);
+const choice=data.choices?.[0],content=choice?.message?.content;
+let reply=content?(Array.isArray(content)?content.map(x=>x.text||'').join(''):String(content)).trim():'';
+if(!reply)throw new Error('Le modèle n’a renvoyé aucune réponse. Essaie un autre modèle.');
+if(['length','max_tokens'].includes(choice.finish_reason))reply=trimToSentence(reply);
+const cc=getChar(id);
+if(cc){cc.messages.push({role:'assistant',text:reply,at:Date.now()});persist()}
+}catch(err){
+const cc=getChar(id);
+if(cc){cc.messages.push({role:'assistant',text:'[Erreur de génération] '+err.message,at:Date.now()});persist()}
+}finally{
+busy=false;
+if(page==='chat'&&activeId===id)renderChat();
+}
+}
+</script>
+
