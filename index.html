@@ -682,4 +682,54 @@ if(page==='chat'&&activeId===id)renderChat();
 }
 }
 </script>
+<script>
+(function(){
+const vp=document.querySelector('meta[name="viewport"]');
+if(vp)vp.setAttribute('content','width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover');
+[['apple-mobile-web-app-capable','yes'],['mobile-web-app-capable','yes'],['apple-mobile-web-app-status-bar-style','black-translucent'],['apple-mobile-web-app-title','Mon IA Privée']].forEach(function(p){const m=document.createElement('meta');m.name=p[0];m.content=p[1];document.head.appendChild(m)});
+['gesturestart','gesturechange','gestureend'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault()},{passive:false})});
+const st=document.createElement('style');
+st.textContent=`
+html{overflow-x:hidden;overscroll-behavior:none;touch-action:manipulation;-webkit-text-size-adjust:100%}
+body{touch-action:manipulation;max-width:100%;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,.bubble,.csd{-webkit-user-select:text;user-select:text}
+.ctop .ibtn{min-width:48px;min-height:48px;border-radius:14px}
+.ctop .ibtn:active,.cid:active{background:#262626}
+.cid{display:flex;align-items:center;gap:10px;flex:1;min-width:0;background:none;border:0;color:inherit;text-align:left;padding:4px;border-radius:14px;cursor:pointer}
+.cid .nm{text-align:left}
+.bubble.typing{display:flex;gap:6px;align-items:center;padding:16px 18px;min-height:46px}
+.bubble.typing span{width:9px;height:9px;border-radius:50%;background:var(--muted);animation:tdot 1.2s infinite ease-in-out}
+.bubble.typing span:nth-child(2){animation-delay:.2s}
+.bubble.typing span:nth-child(3){animation-delay:.4s}
+@keyframes tdot{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-7px);opacity:1}}
+`;
+document.head.appendChild(st);
+const baseChat=renderChat;
+renderChat=function(){
+baseChat();
+const t=document.querySelector('.ctop');
+if(t&&!t.querySelector('.cid')){
+const a=t.querySelector('.gimg'),b=t.querySelector('.nm');
+if(a&&b){
+const w=document.createElement('button');
+w.type='button';
+w.className='cid';
+w.setAttribute('data-cs','toggle');
+w.setAttribute('aria-label','Options du personnage');
+a.parentNode.insertBefore(w,a);
+w.appendChild(a);
+w.appendChild(b);
+}
+}
+if(busy&&page==='chat'){
+const m=document.getElementById('messages');
+if(m){
+m.insertAdjacentHTML('beforeend','<div class="message-row bot-row" id="typing"><div class="bubble bot typing"><span></span><span></span><span></span></div></div>');
+scrollBottom();
+}
+}
+};
+})();
+</script>
+
 
